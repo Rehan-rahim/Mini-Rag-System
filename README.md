@@ -26,6 +26,41 @@ query_id	chunk_type	modality	top_k_text	alpha	P@5	R@10	faithfulness
 215	Q6	fixed	multimodal	10	0.8	0.0	0.0	0.0
 216 rows × 8 columns
 
+**ANOTHER THING TO SUBMIT**
+
+**Retrieval Metrics & Faithfulness Discussion**
+
+In this lab, we implemented a multimodal Retrieval-Augmented Generation (RAG) system using PDFs and images. We evaluated the system using retrieval metrics and conducted an ablation study to analyze the effects of different configurations.
+
+**1. Retrieval Metrics**
+Precision@5 (P@5): Measures the fraction of top-5 retrieved evidence chunks that contain at least one must-have keyword from the query rubric.
+Recall@10 (R@10): Measures the fraction of relevant evidence chunks retrieved within the top-10 results.
+Faithfulness: Evaluates whether the evidence used in the generated answer is consistent with the content in the documents. For our extractive generator, faithfulness is calculated as the fraction of selected evidence lines containing at least one must-have keyword.
+
+
+**Observation:**
+
+Page-based chunking tends to retrieve more coherent chunks, improving faithfulness, because each chunk corresponds to a full page.
+Fixed-size chunking increases granularity, which may slightly reduce P@5 but can improve recall, as smaller chunks can capture keywords that are split across pages.
+Text-only retrieval is faster and avoids irrelevant images but may miss important multimodal context.
+Multimodal retrieval improves coverage, especially when queries relate to visual content (e.g., images of network setups, city skylines).
+
+**2. Ablation Study**
+We systematically varied the following parameters:
+Parameter	Values
+Chunking	Page-based, Fixed-size
+TOP_K_TEXT	2, 5, 10
+Alpha (fusion)	0.2, 0.5, 0.8
+Modality	Text-only, Multimodal
+
+**Key observations:**
+
+TOP_K_TEXT: Increasing top_k improves recall but may reduce precision slightly if irrelevant chunks are included.
+Alpha (fusion weight): Higher alpha favors text, improving text-based relevance; lower alpha favors images, useful for queries about figures.
+Chunking strategy: Page-based chunks give more context per chunk (better for long answers), while fixed-size chunks improve fine-grained retrieval (better for keyword coverage).
+Text-only vs Multimodal: Multimodal retrieval consistently retrieves relevant images alongside text, enhancing grounding for queries related to visual information.
+The ablation table shows how retrieval metrics vary with these settings, helping to identify configurations that balance precision, recall, and faithfulness.
+
 
 
 
