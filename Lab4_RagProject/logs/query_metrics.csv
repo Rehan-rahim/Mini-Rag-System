@@ -1,0 +1,5 @@
+timestamp,query,latency,P@5,R@10,faithfulness
+2026-02-12T12:39:27.972392,What is the climate now,0,0,0,0
+2026-02-12T21:10:14.304987,How is the Rag system working,0.041,0.0,0.0,1.0
+2026-02-12T21:18:49.944489,What is Climate ,0.054,0.0,0.0,1.0
+2026-02-12T22:07:36.200330,What are animals,0.015,0.0,0.0,1.0
