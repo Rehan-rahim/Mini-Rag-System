@@ -12,7 +12,7 @@ import streamlit as st
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from rag.Lab3_core import load_dataset, build_context, page_chunks
+#from rag.Lab3_core import load_dataset, build_context, page_chunks
 from evaluation.metrics import eval_hits
 import time
 
